@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
 
     private NovoCompromissoModel novoCompromissoModel;
+    private CompromissosRegistradosModel compromissosRegistradosModel;
 
 
     @Override
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         novoCompromissoModel = new NovoCompromissoModel();
         novoCompromissoModel.addObserver(this);
+
+        compromissosRegistradosModel = new CompromissosRegistradosModel();
+        compromissosRegistradosModel.addObserver(this);
 
         // TODO pegar os componentes da tela
     }
