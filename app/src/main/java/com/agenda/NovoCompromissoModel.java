@@ -6,40 +6,38 @@ import java.util.Observable;
 public class NovoCompromissoModel extends Observable {
 
 
-    private @Nullable String data;
-    private @Nullable String hora;
-    private @Nullable String descricao;
+    private Compromisso compromisso = new Compromisso();
 
 
     public NovoCompromissoModel() {}
 
 
     public @Nullable String getData() {
-        return data;
+        return this.compromisso.getData();
     }
 
     public void setData(@Nullable String data) {
-        this.data = data;
+        this.compromisso.setData(data);
         setChanged();
         notifyObservers();
     }
 
     public @Nullable String getHora() {
-        return hora;
+        return this.compromisso.getHora();
     }
 
     public void setHora(@Nullable String hora) {
-        this.hora = hora;
+        this.compromisso.setHora(hora);
         setChanged();
         notifyObservers();
     }
 
     public @Nullable String getDescricao() {
-        return descricao;
+        return this.compromisso.getDescricao();
     }
 
     public void setDescricao(@Nullable String descricao) {
-        this.descricao = descricao;
+        this.compromisso.setDescricao(descricao);
         setChanged();
         notifyObservers();
     }
