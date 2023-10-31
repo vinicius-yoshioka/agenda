@@ -1,7 +1,8 @@
-package com.agenda.dominio;
+package com.agenda;
 
+import java.util.Observable;
 
-public class NovoCompromisso {
+public class NovoCompromissoModel extends Observable {
 
 
     private String data;
@@ -9,7 +10,7 @@ public class NovoCompromisso {
     private String descricao;
 
 
-    public NovoCompromisso(String data, String hora, String descricao) {
+    public NovoCompromissoModel(String data, String hora, String descricao) {
         this.data = data;
         this.hora = hora;
         this.descricao = descricao;
