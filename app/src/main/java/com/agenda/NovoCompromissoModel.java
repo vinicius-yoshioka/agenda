@@ -1,43 +1,44 @@
 package com.agenda;
 
+import androidx.annotation.Nullable;
 import java.util.Observable;
 
 public class NovoCompromissoModel extends Observable {
 
 
-    private String data;
-    private String hora;
-    private String descricao;
+    private Compromisso compromisso = new Compromisso();
 
 
-    public NovoCompromissoModel(String data, String hora, String descricao) {
-        this.data = data;
-        this.hora = hora;
-        this.descricao = descricao;
+    public NovoCompromissoModel() {}
+
+
+    public @Nullable String getData() {
+        return this.compromisso.getData();
     }
 
-
-    public String getData() {
-        return data;
+    public void setData(@Nullable String data) {
+        this.compromisso.setData(data);
+        setChanged();
+        notifyObservers();
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public @Nullable String getHora() {
+        return this.compromisso.getHora();
     }
 
-    public String getHora() {
-        return hora;
+    public void setHora(@Nullable String hora) {
+        this.compromisso.setHora(hora);
+        setChanged();
+        notifyObservers();
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public @Nullable String getDescricao() {
+        return this.compromisso.getDescricao();
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricao(@Nullable String descricao) {
+        this.compromisso.setDescricao(descricao);
+        setChanged();
+        notifyObservers();
     }
 }
