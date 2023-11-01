@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NovoCompromisso">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/texto_novoCompromisso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Novo compromisso"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/botao_novoCompromisso_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Data"
+            app:layout_constraintEnd_toStartOf="@id/botao_novoCompromisso_hora"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_novoCompromisso" />
+
+        <Button
+            android:id="@+id/botao_novoCompromisso_hora"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Hora"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/botao_novoCompromisso_data"
+            app:layout_constraintTop_toBottomOf="@+id/texto_novoCompromisso" />
+
+        <TextView
+            android:id="@+id/texto_tituloDescricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Descrição"
+            app:layout_constraintBottom_toTopOf="@id/texto_novoCompromisso_descricao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/texto_novoCompromisso_descricao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toTopOf="@+id/botao_novoCompromisso_ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texto_novoCompromisso"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/botao_novoCompromisso_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
