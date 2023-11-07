@@ -13,6 +13,7 @@ import android.widget.EditText;
 import com.agenda.Date.AgendaDatePicker;
 import com.agenda.Date.Data;
 import com.agenda.Hora.AgendaTimePicker;
+import com.agenda.Hora.Hora;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -90,7 +91,13 @@ public class NovoCompromisso extends Fragment implements Observer {
     }
 
     public void abrirTimePicker(View v) {
-        DialogFragment newFragment = new AgendaTimePicker();
-        newFragment.show(getChildFragmentManager(), "timePicker");
+        AgendaTimePicker agendaTimePicker = new AgendaTimePicker();
+        agendaTimePicker.setOnAgendaTimeSet(new AgendaTimePicker.OnAgendaTimeSet() {
+            @Override
+            public void onTimeSet(Hora hora) {
+                novoCompromissoModel.setHora(hora.toString());
+            }
+        });
+        agendaTimePicker.show(getChildFragmentManager(), "timePicker");
     }
 }
