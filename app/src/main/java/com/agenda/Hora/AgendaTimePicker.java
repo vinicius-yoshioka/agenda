@@ -1,15 +1,23 @@
-package com.agenda;
+package com.agenda.Hora;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.widget.TimePicker;
 import androidx.fragment.app.DialogFragment;
 import java.util.Calendar;
 
 public class AgendaTimePicker extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+
+
+    public static class OnAgendaTimeSet {
+        public void onTimeSet(Hora hora) {}
+    }
+
+
+    private AgendaTimePicker.OnAgendaTimeSet mOnAgendaTimeSet;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -20,8 +28,11 @@ public class AgendaTimePicker extends DialogFragment implements TimePickerDialog
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        // Do something with the time chosen by the user
-        Log.d("DataHora", "Hora: " + String.valueOf(hourOfDay));
-        Log.d("DataHora", "Minuto: " + String.valueOf(minute));
+        Hora hora = new Hora(hourOfDay, minute);
+        mOnAgendaTimeSet.onTimeSet(hora);
+    }
+
+    public void setOnAgendaTimeSet(OnAgendaTimeSet onAgendaTimeSet) {
+        this.mOnAgendaTimeSet = onAgendaTimeSet;
     }
 }
