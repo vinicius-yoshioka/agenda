@@ -8,7 +8,6 @@ import java.util.Observer;
 public class MainActivity extends AppCompatActivity implements Observer {
 
 
-    private NovoCompromissoModel novoCompromissoModel;
     private CompromissosRegistradosModel compromissosRegistradosModel;
 
 
@@ -16,9 +15,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        novoCompromissoModel = new NovoCompromissoModel();
-        novoCompromissoModel.addObserver(this);
 
         compromissosRegistradosModel = new CompromissosRegistradosModel();
         compromissosRegistradosModel.addObserver(this);
