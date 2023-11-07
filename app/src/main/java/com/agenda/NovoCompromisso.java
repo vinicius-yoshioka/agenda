@@ -5,8 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +13,14 @@ import android.widget.EditText;
 import com.agenda.Date.AgendaDatePicker;
 import com.agenda.Date.Data;
 
-public class NovoCompromisso extends Fragment {
+import java.util.Observable;
+import java.util.Observer;
+
+public class NovoCompromisso extends Fragment implements Observer {
+
 
     private NovoCompromissoModel novoCompromissoModel;
+
     Button botao_novoCompromisso_data;
     Button botao_novoCompromisso_hora;
     EditText texto_novoCompromisso_descricao;
@@ -28,8 +31,7 @@ public class NovoCompromisso extends Fragment {
 
 
     public static NovoCompromisso newInstance() {
-        NovoCompromisso fragment = new NovoCompromisso();
-        return fragment;
+        return new NovoCompromisso();
     }
 
     @Override
@@ -70,13 +72,17 @@ public class NovoCompromisso extends Fragment {
     }
 
 
+    @Override
+    public void update(Observable o, Object arg) {
+        // TODO atualizar dados na tela quando os dados do model mudar
+    }
+
     public void abrirDatePicker(View v) {
         AgendaDatePicker agendaDatePicker = new AgendaDatePicker();
         agendaDatePicker.setOnAgendaDateSet(new AgendaDatePicker.OnAgendaDateSet() {
             @Override
             public void onDateSet(Data data) {
                 novoCompromissoModel.setData(data.toString());
-
             }
         });
         agendaDatePicker.show(getChildFragmentManager(), "datePicker");
