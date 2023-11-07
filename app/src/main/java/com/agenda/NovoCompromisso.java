@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.agenda.Date.AgendaDatePicker;
+import com.agenda.Hora.AgendaTimePicker;
 
 public class NovoCompromisso extends Fragment {
 
