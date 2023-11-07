@@ -29,7 +29,7 @@ public class AgendaDatePicker extends DialogFragment implements DatePickerDialog
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        Data data = new Data(year, month, day);
+        Data data = new Data(year, month + 1, day);
         this.mOnAgendaDateSet.onDateSet(data);
     }
 
