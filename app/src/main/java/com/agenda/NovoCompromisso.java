@@ -4,11 +4,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.agenda.Date.AgendaDatePicker;
 import com.agenda.Date.Data;
 import com.agenda.Hora.AgendaTimePicker;
@@ -68,6 +72,13 @@ public class NovoCompromisso extends Fragment implements Observer {
                 abrirTimePicker(v);
             }
         });
+
+        botao_novoCompromisso_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCompromisso();
+            }
+        });
     }
 
 
@@ -96,5 +107,13 @@ public class NovoCompromisso extends Fragment implements Observer {
             }
         });
         agendaTimePicker.show(getChildFragmentManager(), "timePicker");
+    }
+
+    public void addCompromisso() {
+        String descricao = texto_novoCompromisso_descricao.getText().toString();
+        novoCompromissoModel.setDescricao(descricao);
+
+        Toast.makeText(getContext(), novoCompromissoModel.toString(), Toast.LENGTH_LONG).show();
+        Log.d("NovoCompromisso", novoCompromissoModel.toString());
     }
 }
