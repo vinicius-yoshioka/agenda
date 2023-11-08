@@ -1,5 +1,6 @@
 package com.agenda;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import java.util.Observable;
 
@@ -40,5 +41,12 @@ public class NovoCompromissoModel extends Observable {
         this.compromisso.setDescricao(descricao);
         setChanged();
         notifyObservers();
+    }
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Compromisso: " + compromisso.getDescricao() + ", " + compromisso.getData() + ", " + compromisso.getHora();
     }
 }
