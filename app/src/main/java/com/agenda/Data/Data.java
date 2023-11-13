@@ -1,4 +1,4 @@
-package com.agenda.Date;
+package com.agenda.Data;
 
 import androidx.annotation.NonNull;
 
@@ -45,6 +45,6 @@ public class Data {
     @NonNull
     @Override
     public String toString() {
-        return mAno + "/" + mMes + "/" + mDia;
+        return mDia + "/" + mMes + "/" + mAno;
     }
 }

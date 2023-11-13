@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.agenda.Date.AgendaDatePicker;
-import com.agenda.Date.Data;
+import com.agenda.Data.AgendaDatePicker;
+import com.agenda.Data.Data;
 import java.util.Observable;
 import java.util.Observer;
 

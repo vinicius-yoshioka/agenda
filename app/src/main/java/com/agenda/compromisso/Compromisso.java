@@ -1,7 +1,7 @@
 package com.agenda.compromisso;
 
 import androidx.annotation.Nullable;
-import com.agenda.Date.Data;
+import com.agenda.Data.Data;
 import com.agenda.Hora.Hora;
 
 public class Compromisso {
