@@ -35,6 +35,6 @@ public class Hora {
     @NonNull
     @Override
     public String toString() {
-        return mHora + "/" + mMinuto;
+        return mHora + ":" + mMinuto;
     }
 }
