@@ -12,13 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.agenda.Data.AgendaDatePicker;
 import com.agenda.Data.Data;
-import java.util.Observable;
-import java.util.Observer;
+import com.agenda.compromisso.Compromisso;
+import java.util.ArrayList;
 
-public class CompromissosRegistrados extends Fragment implements Observer {
+public class CompromissosRegistrados extends Fragment {
 
 
-    private CompromissosRegistradosModel compromissosRegistradosModel;
+    private ArrayList<Compromisso> compromissosRegistradosModel;
     private Button botao_compromissos_hoje;
     private Button botao_compromissos_outraData;
     private TextView texto_compromissosCadastrados;
@@ -46,9 +46,7 @@ public class CompromissosRegistrados extends Fragment implements Observer {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        compromissosRegistradosModel = new CompromissosRegistradosModel();
-        compromissosRegistradosModel.addObserver(this);
-
+        compromissosRegistradosModel = new ArrayList<>();
         botao_compromissos_hoje = view.findViewById(R.id.botao_compromissos_hoje);
         botao_compromissos_outraData = view.findViewById(R.id.botao_compromissos_outraData);
         texto_compromissosCadastrados = view.findViewById(R.id.texto_compromissosCadastrados);
@@ -61,6 +59,8 @@ public class CompromissosRegistrados extends Fragment implements Observer {
                 int mes = today.get(java.util.Calendar.MONTH);
                 int dia = today.get(java.util.Calendar.DAY_OF_MONTH);
                 dataSelecionada = new Data(ano, mes + 1, dia);
+                botao_compromissos_hoje.setText(dataSelecionada.toString());
+                botao_compromissos_outraData.setText("Outra data");
                 lerCompromissosRegistradosNaDataSelecionada();
             }
         });
@@ -74,17 +74,14 @@ public class CompromissosRegistrados extends Fragment implements Observer {
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
-        // TODO atualizar dados na tela quando os dados do model mudar
-    }
-
     public void abrirDatePicker(View v) {
         AgendaDatePicker agendaDatePicker = new AgendaDatePicker();
         agendaDatePicker.setOnAgendaDateSet(new AgendaDatePicker.OnAgendaDateSet() {
             @Override
             public void onDateSet(Data data) {
                 dataSelecionada = data;
+                botao_compromissos_hoje.setText("Hoje");
+                botao_compromissos_outraData.setText(data.toString());
                 lerCompromissosRegistradosNaDataSelecionada();
             }
         });
