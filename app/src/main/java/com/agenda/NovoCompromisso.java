@@ -4,7 +4,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,22 +11,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.agenda.Date.AgendaDatePicker;
 import com.agenda.Date.Data;
 import com.agenda.Hora.AgendaTimePicker;
 import com.agenda.Hora.Hora;
-import java.util.Observable;
-import java.util.Observer;
+import com.agenda.compromisso.Compromisso;
 
-public class NovoCompromisso extends Fragment implements Observer {
+public class NovoCompromisso extends Fragment {
 
 
-    private NovoCompromissoModel novoCompromissoModel;
-    Button botao_novoCompromisso_data;
-    Button botao_novoCompromisso_hora;
-    EditText texto_novoCompromisso_descricao;
-    Button botao_novoCompromisso_ok;
+    private Compromisso novoCompromissoModel;
+    private Button botao_novoCompromisso_data;
+    private Button botao_novoCompromisso_hora;
+    private EditText texto_novoCompromisso_descricao;
+    private Button botao_novoCompromisso_ok;
 
 
     public NovoCompromisso() {}
@@ -51,9 +48,7 @@ public class NovoCompromisso extends Fragment implements Observer {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        novoCompromissoModel = new NovoCompromissoModel();
-        novoCompromissoModel.addObserver(this);
-
+        novoCompromissoModel = new Compromisso();
         botao_novoCompromisso_data = view.findViewById(R.id.botao_novoCompromisso_data);
         botao_novoCompromisso_hora = view.findViewById(R.id.botao_novoCompromisso_hora);
         texto_novoCompromisso_descricao = view.findViewById(R.id.texto_novoCompromisso_descricao);
@@ -82,17 +77,13 @@ public class NovoCompromisso extends Fragment implements Observer {
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
-        // TODO atualizar dados na tela quando os dados do model mudar
-    }
-
     public void abrirDatePicker(View v) {
         AgendaDatePicker agendaDatePicker = new AgendaDatePicker();
         agendaDatePicker.setOnAgendaDateSet(new AgendaDatePicker.OnAgendaDateSet() {
             @Override
             public void onDateSet(Data data) {
-                novoCompromissoModel.setData(data.toString());
+                novoCompromissoModel.setData(data);
+                botao_novoCompromisso_data.setText(data.toString());
             }
         });
         agendaDatePicker.show(getChildFragmentManager(), "datePicker");
@@ -103,7 +94,8 @@ public class NovoCompromisso extends Fragment implements Observer {
         agendaTimePicker.setOnAgendaTimeSet(new AgendaTimePicker.OnAgendaTimeSet() {
             @Override
             public void onTimeSet(Hora hora) {
-                novoCompromissoModel.setHora(hora.toString());
+                novoCompromissoModel.setHora(hora);
+                botao_novoCompromisso_hora.setText(hora.toString());
             }
         });
         agendaTimePicker.show(getChildFragmentManager(), "timePicker");
