@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import androidx.annotation.Nullable;
+
 import com.agenda.Data.Data;
 import com.agenda.Hora.Hora;
 
@@ -42,12 +45,24 @@ public class CompromissosDb {
         mDatabase.insert(CompromissosDbSchema.CompromissosRegistrados.NOME, null, valor);
     }
 
-    public Cursor getCompromissos() {
+    public Cursor getCompromissos(@Nullable Data data) {
+        String where = null;
+        String[] whereArgs = null;
+
+        if (data != null) {
+            where = "ano = ? AND mes = ? AND dia = ?";
+            whereArgs = new String[]{
+                    Integer.toString(data.getAno()),
+                    Integer.toString(data.getAno()),
+                    Integer.toString(data.getAno())
+            };
+        }
+
         return mDatabase.query(
                 CompromissosDbSchema.CompromissosRegistrados.NOME,
                 null,
-                null,
-                null,
+                where,
+                whereArgs,
                 null,
                 null,
                 CompromissosDbSchema.CompromissosRegistrados.Colunas.ano + "DESC, " +
