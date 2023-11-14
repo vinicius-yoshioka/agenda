@@ -1,5 +1,6 @@
 package com.agenda;
 
+import android.database.Cursor;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -13,11 +14,14 @@ import android.widget.TextView;
 import com.agenda.Data.AgendaDatePicker;
 import com.agenda.Data.Data;
 import com.agenda.compromisso.Compromisso;
+import com.agenda.compromisso.CompromissosDb;
+
 import java.util.ArrayList;
 
 public class CompromissosRegistrados extends Fragment {
 
 
+    private CompromissosDb compromissosDb;
     private ArrayList<Compromisso> compromissosRegistradosModel;
     private Button botao_compromissos_hoje;
     private Button botao_compromissos_outraData;
@@ -45,6 +49,8 @@ public class CompromissosRegistrados extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        compromissosDb = new CompromissosDb(getContext());
 
         compromissosRegistradosModel = new ArrayList<>();
         botao_compromissos_hoje = view.findViewById(R.id.botao_compromissos_hoje);
@@ -89,7 +95,8 @@ public class CompromissosRegistrados extends Fragment {
     }
 
     private void lerCompromissosRegistradosNaDataSelecionada() {
-        // TODO ler do banco de dados e mostrar no TextView
         texto_compromissosCadastrados.setText(dataSelecionada.toString());
+
+//        Cursor compromissosLidos = compromissosDb.getCompromissos(dataSelecionada);
     }
 }
