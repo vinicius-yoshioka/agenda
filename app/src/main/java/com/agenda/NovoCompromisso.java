@@ -16,10 +16,12 @@ import com.agenda.Data.Data;
 import com.agenda.Hora.AgendaTimePicker;
 import com.agenda.Hora.Hora;
 import com.agenda.compromisso.Compromisso;
+import com.agenda.compromisso.CompromissosDb;
 
 public class NovoCompromisso extends Fragment {
 
 
+    private CompromissosDb compromissosDb;
     private Compromisso novoCompromissoModel;
     private Button botao_novoCompromisso_data;
     private Button botao_novoCompromisso_hora;
@@ -47,6 +49,8 @@ public class NovoCompromisso extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        compromissosDb = new CompromissosDb(getContext());
 
         novoCompromissoModel = new Compromisso();
         botao_novoCompromisso_data = view.findViewById(R.id.botao_novoCompromisso_data);
@@ -102,11 +106,42 @@ public class NovoCompromisso extends Fragment {
     }
 
     public void addCompromisso() {
-        // TODO add compromisso no banco de dados
         String descricao = texto_novoCompromisso_descricao.getText().toString();
         novoCompromissoModel.setDescricao(descricao);
 
-        Toast.makeText(getContext(), novoCompromissoModel.toString(), Toast.LENGTH_LONG).show();
-        Log.d("NovoCompromisso", novoCompromissoModel.toString());
+        try {
+            verificarDados();
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            compromissosDb.addCompromisso(novoCompromissoModel);
+
+            botao_novoCompromisso_data.setText("Data");
+            botao_novoCompromisso_hora.setText("Hora");
+            texto_novoCompromisso_descricao.setText("");
+
+            Toast.makeText(getContext(), "Compromisso adicionado", Toast.LENGTH_SHORT).show();
+            Log.d("NovoCompromisso", novoCompromissoModel.toString());
+        } catch (Exception e) {
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void verificarDados() throws Exception {
+        String mensagem = "";
+        if (novoCompromissoModel.getData() == null) {
+            mensagem = "Campo data está vazio";
+        } else if (novoCompromissoModel.getHora() == null) {
+            mensagem = "Campo hora está vazio";
+        } else if (novoCompromissoModel.getDescricao() == null || novoCompromissoModel.getDescricao().length() == 0) {
+            mensagem = "Campo descrição está vazio";
+        }
+
+        if (mensagem.length() > 0) {
+            throw new Exception(mensagem);
+        }
     }
 }
