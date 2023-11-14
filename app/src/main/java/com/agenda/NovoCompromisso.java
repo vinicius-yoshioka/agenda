@@ -102,6 +102,7 @@ public class NovoCompromisso extends Fragment {
     }
 
     public void addCompromisso() {
+        // TODO add compromisso no banco de dados
         String descricao = texto_novoCompromisso_descricao.getText().toString();
         novoCompromissoModel.setDescricao(descricao);
 
