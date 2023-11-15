@@ -1,5 +1,6 @@
 package com.agenda;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.agenda.Data.AgendaDatePicker;
 import com.agenda.Data.Data;
 import com.agenda.compromisso.Compromisso;
 import com.agenda.compromisso.CompromissosDb;
+import com.agenda.compromisso.CompromissosDbSchema;
 
 import java.util.ArrayList;
 
@@ -95,8 +97,29 @@ public class CompromissosRegistrados extends Fragment {
     }
 
     private void lerCompromissosRegistradosNaDataSelecionada() {
-        texto_compromissosCadastrados.setText(dataSelecionada.toString());
+        Cursor compromissosLidos = compromissosDb.getCompromissos(dataSelecionada);
 
-//        Cursor compromissosLidos = compromissosDb.getCompromissos(dataSelecionada);
+        if (compromissosLidos.getCount() == 0) {
+            texto_compromissosCadastrados.setText("Nenhum compromisso cadastrado nessa data");
+            return;
+        }
+
+        try {
+            texto_compromissosCadastrados.setText("");
+
+            compromissosLidos.moveToFirst();
+            while (!compromissosLidos.isAfterLast()) {
+                @SuppressLint("Range") int hora = compromissosLidos.getInt(compromissosLidos.getColumnIndex(CompromissosDbSchema.CompromissosRegistrados.Colunas.hora));
+                @SuppressLint("Range") int minuto = compromissosLidos.getInt(compromissosLidos.getColumnIndex(CompromissosDbSchema.CompromissosRegistrados.Colunas.minuto));
+                @SuppressLint("Range") String descrcao = compromissosLidos.getString(compromissosLidos.getColumnIndex(CompromissosDbSchema.CompromissosRegistrados.Colunas.descricao));
+
+                texto_compromissosCadastrados.append(hora + ":" + minuto + "\n");
+                texto_compromissosCadastrados.append(descrcao + "\n\n");
+
+                compromissosLidos.moveToNext();
+            }
+        } finally {
+            compromissosLidos.close();
+        }
     }
 }
