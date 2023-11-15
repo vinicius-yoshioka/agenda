@@ -53,8 +53,8 @@ public class CompromissosDb {
             where = "ano = ? AND mes = ? AND dia = ?";
             whereArgs = new String[]{
                     Integer.toString(data.getAno()),
-                    Integer.toString(data.getAno()),
-                    Integer.toString(data.getAno())
+                    Integer.toString(data.getMes()),
+                    Integer.toString(data.getDia())
             };
         }
 
