@@ -65,11 +65,11 @@ public class CompromissosDb {
                 whereArgs,
                 null,
                 null,
-                CompromissosDbSchema.CompromissosRegistrados.Colunas.ano + "DESC, " +
-                        CompromissosDbSchema.CompromissosRegistrados.Colunas.mes + "DESC, " +
-                        CompromissosDbSchema.CompromissosRegistrados.Colunas.dia + "DESC, " +
-                        CompromissosDbSchema.CompromissosRegistrados.Colunas.hora + "DESC, " +
-                        CompromissosDbSchema.CompromissosRegistrados.Colunas.minuto + "DESC"
+                CompromissosDbSchema.CompromissosRegistrados.Colunas.ano + " DESC, " +
+                        CompromissosDbSchema.CompromissosRegistrados.Colunas.mes + " DESC, " +
+                        CompromissosDbSchema.CompromissosRegistrados.Colunas.dia + " DESC, " +
+                        CompromissosDbSchema.CompromissosRegistrados.Colunas.hora + " DESC, " +
+                        CompromissosDbSchema.CompromissosRegistrados.Colunas.minuto + " DESC"
         );
     }
 
