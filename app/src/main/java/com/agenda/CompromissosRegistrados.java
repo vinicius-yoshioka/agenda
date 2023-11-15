@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class CompromissosRegistrados extends Fragment {
         botao_compromissos_hoje = view.findViewById(R.id.botao_compromissos_hoje);
         botao_compromissos_outraData = view.findViewById(R.id.botao_compromissos_outraData);
         texto_compromissosCadastrados = view.findViewById(R.id.texto_compromissosCadastrados);
+        texto_compromissosCadastrados.setMovementMethod(new ScrollingMovementMethod());
 
         botao_compromissos_hoje.setOnClickListener(new View.OnClickListener() {
             @Override
