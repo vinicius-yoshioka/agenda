@@ -50,7 +50,7 @@ public class CompromissosRegistrados extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        compromissosDb = new CompromissosDb(getContext());
+        compromissosDb = new CompromissosDb(getActivity());
 
         compromissosRegistradosModel = new ArrayList<>();
         botao_compromissos_hoje = view.findViewById(R.id.botao_compromissos_hoje);
